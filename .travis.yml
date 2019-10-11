@@ -30,8 +30,8 @@ jobs:
     - stage: test
       name: "Generate coverage"
       install:
-        - go get -v github.com/codeclimate/test-reporter
-        - cd $GOPATH/src/github.com/codeclimate/test-reporter && git checkout tags/v0.7.0 && go install
+        - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+        - chmod +x ./cc-test-reporter
       before_script:
         - test-reporter before-build
       script: make test-coverage
