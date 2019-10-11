@@ -6,6 +6,7 @@ import (
 	"os"
 )
 
+// Execute runs the rootCommand and starts the execution of all the nested commands that are being used.
 func Execute(){
 	if err := rootCmd.Execute(); err != nil {
 		fmt.Println(err)
