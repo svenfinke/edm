@@ -37,7 +37,7 @@ jobs:
         - ./cc-test-reporter before-build
       script: make test-coverage
       after_script:
-        - ./cc-test-reporter after-build -v --exit-code $TRAVIS_TEST_RESULT
+        - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 
     - stage: deploy
       name: "Deployment"
