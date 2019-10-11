@@ -25,7 +25,6 @@ func OpenConfig(filename string) Config {
 	return cfg
 }
 
-
 // GenerateFile is generating a yaml file from the config object
 func (c *Config) GenerateFile() []byte {
 	if data, err := yaml.Marshal(c); err != nil {
