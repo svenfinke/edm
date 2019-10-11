@@ -2,6 +2,6 @@ package main
 
 import "github.com/svenfinke/edm/cmd"
 
-func main(){
+func main() {
 	cmd.Execute()
 }

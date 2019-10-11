@@ -11,11 +11,11 @@ import (
 type Dependency struct {
 	Target string `yaml:"target"`
 	Source string `yaml:"source"`
-	Type string `yaml:"type"`
+	Type   string `yaml:"type"`
 }
 
 // Fetch is Downloading the Dependency from Source and Saving it to Target
-func (d *Dependency) Fetch () error {
+func (d *Dependency) Fetch() error {
 	fmt.Printf("> Fetching '%s', writing to '%s'\n", d.Source, d.Target)
 
 	return downloadFile(d.Source, d.Target)

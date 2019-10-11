@@ -6,15 +6,15 @@ import (
 	"github.com/svenfinke/edm/manager"
 )
 
-func init(){
+func init() {
 	rootCmd.AddCommand(fetchCmd)
 }
 
 var (
 	fetchCmd = &cobra.Command{
-		Use: "fetch",
+		Use:   "fetch",
 		Short: "Fetch all defined dependencies",
-		Long: "Fetch all defined dependencies",
+		Long:  "Fetch all defined dependencies",
 		Run: func(cmd *cobra.Command, args []string) {
 			var cfg = manager.OpenConfig(cfgFilename)
 
