@@ -11,6 +11,10 @@ deps:
 run:
 	@go run $(exe) ${ARGS}
 
+install:
+	@echo INFO: Installing edm
+	@go install
+
 test:
 	@echo INFO: Running tests
 	@go test ./...

@@ -11,6 +11,19 @@ type Config struct {
 	Dependencies []*Dependency `yaml:"dependencies"`
 }
 
+func OpenConfig(filename string) Config {
+	var cfg = Config{}
+	if data, err := ioutil.ReadFile(filename); err != nil {
+		log.Panic(err)
+	} else {
+		if err := yaml.Unmarshal(data, &cfg); err != nil {
+			log.Panic(err)
+		}
+	}
+
+	return cfg
+}
+
 func (c *Config) GenerateFile() []byte{
 	if data, err := yaml.Marshal(c); err != nil {
 		log.Panic(err)
