@@ -8,13 +8,11 @@ import (
 
 func init(){
 	initCmd.Flags().BoolVarP(&withExample, "withExample", "e", false, "adds examples to the initial file")
-	initCmd.Flags().BoolVarP(&force, "force", "", false, "overwrites the existing files and ignores conflicts")
 	rootCmd.AddCommand(initCmd)
 }
 
 var (
 	withExample bool
-	force bool
 
 	initCmd     = &cobra.Command{
 		Use: "init",
@@ -44,7 +42,7 @@ Example usage:
 				cfg.Dependencies = append(cfg.Dependencies, &depExample2)
 			}
 
-			if err := cfg.WriteFile(cfgFilename, force); err != nil {
+			if err := cfg.WriteFile(cfgFilename); err != nil {
 				fmt.Printf("\nERR: error while creating file. (%s)", err.Error())
 			}
 		},
