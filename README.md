@@ -13,4 +13,8 @@ To ensure a basic level of security, you can provide hash to check the file inte
 
 # Usage
 
+ `edm` is a CLI tool that will provide nested commands with their own arguments and flags. Type `edm help` for additional information. To find help for a specific command, type `edm [command] help`. This will provide you with a list and descriptions for flags, arguments and/or subcommands that are available.
  
+## Init
+ 
+`edm init` will generate an empty config file for you that you can extend to define your dependencies. The default file is `.edm.yaml`.
