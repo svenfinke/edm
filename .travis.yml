@@ -3,6 +3,7 @@ language: go
 env:
   global:
     - GO111MODULE=on
+    - CC_TEST_REPORTER_ID=84c4895fcde8b9ad85469b325f08337b5a7953a5b0508b0cf0fe7a38acf3271b
 
 stages:
   - test
