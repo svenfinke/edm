@@ -6,7 +6,7 @@ import (
 	"github.com/svenfinke/edm/manager"
 )
 
-func init(){
+func init() {
 	initCmd.Flags().BoolVarP(&withExample, "withExample", "e", false, "adds examples to the initial file")
 	rootCmd.AddCommand(initCmd)
 }
@@ -14,15 +14,15 @@ func init(){
 var (
 	withExample bool
 
-	initCmd     = &cobra.Command{
-		Use: "init",
+	initCmd = &cobra.Command{
+		Use:   "init",
 		Short: "Initialize the config file for edm",
 		Long: `Init will create a .edm.yml file in the root of the project. You can alter the location or name of the config file by passing flags to the function. 
 
 Example usage:
 	edm init
 
-` ,
+`,
 		Run: func(cmd *cobra.Command, args []string) {
 			var cfg = manager.Config{}
 

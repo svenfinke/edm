@@ -27,7 +27,7 @@ func OpenConfig(filename string) Config {
 
 
 // GenerateFile is generating a yaml file from the config object
-func (c *Config) GenerateFile() []byte{
+func (c *Config) GenerateFile() []byte {
 	if data, err := yaml.Marshal(c); err != nil {
 		log.Panic(err)
 	} else {
@@ -38,6 +38,6 @@ func (c *Config) GenerateFile() []byte{
 }
 
 // WriteFile is writing the content from GenerateFile into a file in the filesystem.
-func (c *Config) WriteFile(filename string) error{
+func (c *Config) WriteFile(filename string) error {
 	return ioutil.WriteFile(filename, c.GenerateFile(), 0644)
 }
