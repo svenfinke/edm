@@ -1,0 +1,43 @@
+language: go
+
+env:
+  global:
+    - GO111MODULE=on
+
+stages:
+  - test
+  - deploy
+
+go:
+  - 1.13.x
+
+sudo: required
+dist: trusty
+
+before_install:
+  - go get -u golang.org/x/lint/golint
+  - make deps
+
+jobs:
+  include:
+    - name: Unit tests
+      script: make test
+
+    - stage: deploy
+      name: "Deployment"
+      if: tag IS present
+      script: make release
+      deploy:
+        provider: releases
+        overwrite: true
+        file:
+          - release/monorepo-operator-linux-amd64
+          - release/monorepo-operator-linux-arm
+          - release/monorepo-operator-linux-386
+          - release/monorepo-operator-mac-amd64
+          - release/monorepo-operator-windows-amd64.exe
+          - release/monorepo-operator-windows-386.exe
+        skip_cleanup: true
+        on:
+          repo: svenfinke/edm
+          tags: true
