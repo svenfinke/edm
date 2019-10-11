@@ -7,22 +7,20 @@ import (
 	"os"
 )
 
+// Dependency is defining a single dependency that must be fetched for the project
 type Dependency struct {
 	Target string `yaml:"target"`
 	Source string `yaml:"source"`
 	Type string `yaml:"type"`
 }
 
+// Fetch is Downloading the Dependency from Source and Saving it to Target
 func (d *Dependency) Fetch () error {
 	fmt.Printf("> Fetching '%s', writing to '%s'\n", d.Source, d.Target)
 
 	return downloadFile(d.Source, d.Target)
 }
 
-
-// DownloadFile will download a url and store it in local filepath.
-// It writes to the destination file as it downloads it, without
-// loading the entire file into memory.
 func downloadFile(url string, filepath string) error {
 	// Create the file
 	out, err := os.Create(filepath)
