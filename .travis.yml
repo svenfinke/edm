@@ -23,6 +23,21 @@ jobs:
     - name: Unit tests
       script: make test
 
+    - stage: test
+      name: "Run tests"
+      script: make test
+
+    - stage: test
+      name: "Generate coverage"
+      install:
+        - go get -v github.com/codeclimate/test-reporter
+        - cd $GOPATH/src/github.com/codeclimate/test-reporter && git checkout tags/v0.7.0 && go install
+      before_script:
+        - test-reporter before-build
+      script: make test-coverage
+      after_script:
+        - test-reporter after-build --coverage-input-type gocov --exit-code $TRAVIS_TEST_RESULT
+
     - stage: deploy
       name: "Deployment"
       if: tag IS present
