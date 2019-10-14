@@ -2,7 +2,7 @@ exe = main.go
 cmd = edm
 TRAVIS_TAG ?= "0.0.0"
 
-all: deps
+all: deps test run
 
 deps:
 	@echo INFO: Installing dependencies
@@ -18,6 +18,10 @@ install:
 test:
 	@echo INFO: Running tests
 	@go test ./...
+
+fmt:
+	@echo INFO: Formatting go code
+	@go fmt ./...
 
 test-coverage:
 	@echo INFO: Generate coverage

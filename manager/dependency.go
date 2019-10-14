@@ -1,11 +1,6 @@
 package manager
 
-import (
-	"fmt"
-	"io"
-	"net/http"
-	"os"
-)
+import "fmt"
 
 // Dependency is defining a single dependency that must be fetched for the project
 type Dependency struct {
@@ -14,33 +9,21 @@ type Dependency struct {
 	Type   string `yaml:"type"`
 }
 
-// Fetch is Downloading the Dependency from Source and Saving it to Target
-func (d *Dependency) Fetch() error {
-	fmt.Printf("> Fetching '%s', writing to '%s'\n", d.Source, d.Target)
-
-	return downloadFile(d.Source, d.Target)
+// DependencyTypeInterface is used to generate types that can be used in edm
+type DependencyTypeInterface interface {
+	Fetch(dependency *Dependency) error
+	GetInfo() string
 }
 
-func downloadFile(url string, filepath string) error {
-	// Create the file
-	out, err := os.Create(filepath)
-	if err != nil {
-		return err
-	}
-	defer out.Close()
+// DependencyTypes is a map with all available Types
+var DependencyTypes map[string]DependencyTypeInterface
 
-	// Get the data
-	resp, err := http.Get(url)
-	if err != nil {
-		return err
-	}
-	defer resp.Body.Close()
+func init() {
+	DependencyTypes = make(map[string]DependencyTypeInterface)
+}
 
-	// Write the body to file
-	_, err = io.Copy(out, resp.Body)
-	if err != nil {
-		return err
-	}
-
-	return nil
+// Fetch is using the type of the dependency and using it to call the correct Fetch of the given type
+func (d *Dependency) Fetch() error {
+	fmt.Printf("INFO: Fetching %s as %s\n", d.Source, d.Type)
+	return DependencyTypes[d.Type].Fetch(d)
 }
