@@ -3,3 +3,5 @@ vendor/*
 dist/*
 .edm.yaml
 c.out
+test/*
+!test/test.zip

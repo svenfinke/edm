@@ -18,3 +18,18 @@ To ensure a basic level of security, you can provide hash to check the file inte
 ## Init
  
 `edm init` will generate an empty config file for you that you can extend to define your dependencies. The default file is `.edm.yaml`.
+
+## Fetch
+
+`edm fetch` will download all the dependencies and put them into the target directory.
+
+# Configuration
+
+## Types
+
+The types identify the kind of file that your are fetching. Depending on this type, some additional actions may be done. A zip file might be unarchived and the contents will be moved into the target, or a binary is made executable. These are the types that are available right now:
+
+| type | description | additional config |
+|---|---|---|
+| default | Downloads file via http | - |
+| binary | Download file via http and make it executable | - |

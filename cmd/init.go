@@ -30,7 +30,7 @@ Example usage:
 				var depExample1 = manager.Dependency{
 					Target: "./config/some.yaml",
 					Source: "https://example.com/some.yaml",
-					Type:   "file",
+					Type:   "default",
 				}
 				var depExample2 = manager.Dependency{
 					Target: "./.env",
