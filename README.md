@@ -3,7 +3,6 @@
 [![Code Climate issues](https://img.shields.io/codeclimate/issues/svenfinke/edm?style=flat-square)](https://codeclimate.com/github/svenfinke/edm) 
 [![Code Climate technical debt](https://img.shields.io/codeclimate/tech-debt/svenfinke/edm?style=flat-square)](https://codeclimate.com/github/svenfinke/edm) 
 [![Code Climate coverage](https://img.shields.io/codeclimate/coverage/svenfinke/edm?style=flat-square)](https://codeclimate.com/github/svenfinke/edm)
-[![Codacy branch grade](https://img.shields.io/codacy/grade/01cfe390e56c47f2aa61273b3a2061a1/master?style=flat-square)](https://app.codacy.com/manual/svenfinke/edm/dashboard)
 
 # External Dependency Manager
 
