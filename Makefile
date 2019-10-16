@@ -29,7 +29,7 @@ test-coverage:
 
 release-amd64:
 	@echo INFO: Building $@
-	@CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags "-X main.version=$(TRAVIS_TAG) -s -w" -o dist/$(cmd)-linux-amd64 $(exe)
+	@CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags "-s -w -X main.version=$(TRAVIS_TAG) -s -w" -o dist/$(cmd)-linux-amd64 $(exe)
 	@echo INFO: Finished Building $@
 
 release-arm:
@@ -49,12 +49,12 @@ release-mac-amd64:
 
 release-windows-amd64:
 	@echo INFO: Building $@
-	@CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -ldflags "-X main.version=$(TRAVIS_TAG) -s -w" -o dist/$(cmd)-windows-amd64.exe $(exe)
+	@CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -ldflags "-s -w -X main.version=$(TRAVIS_TAG) -s -w" -o dist/$(cmd)-windows-amd64.exe $(exe)
 	@echo INFO: Finished Building $@
 
 release-windows-386:
 	@echo INFO: Building $@
-	@CGO_ENABLED=0 GOOS=windows GOARCH=386 go build -ldflags "-X main.version=$(TRAVIS_TAG) -s -w" -o dist/$(cmd)-windows-386.exe $(exe)
+	@CGO_ENABLED=0 GOOS=windows GOARCH=386 go build -ldflags "-s -w -X main.version=$(TRAVIS_TAG) -s -w" -o dist/$(cmd)-windows-386.exe $(exe)
 	@echo INFO: Finished Building $@
     	
 release: release-amd64 release-arm release-386 release-mac-amd64 release-windows-386 release-windows-amd64

@@ -30,8 +30,10 @@ jobs:
     - "./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT"
   - stage: deploy
     name: Deployment
-    if: tag IS present
-    before_script: make deps
+    # if: tag IS present
+    before_script:
+      - make deps
+      - sudo apt install upx
     script: make release
     deploy:
       provider: releases
