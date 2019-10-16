@@ -32,3 +32,4 @@ The types identify the kind of file that your are fetching. Depending on this ty
 |---|---|---|
 | default | Downloads file via http | - |
 | binary | Download file via http and make it executable | - |
+| zip | Download file via http and make unzip it | - |

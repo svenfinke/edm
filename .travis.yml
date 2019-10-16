@@ -46,12 +46,12 @@ jobs:
         provider: releases
         overwrite: true
         file:
-          - release/monorepo-operator-linux-amd64
-          - release/monorepo-operator-linux-arm
-          - release/monorepo-operator-linux-386
-          - release/monorepo-operator-mac-amd64
-          - release/monorepo-operator-windows-amd64.exe
-          - release/monorepo-operator-windows-386.exe
+          - release/edm-linux-amd64
+          - release/edm-linux-arm
+          - release/edm-linux-386
+          - release/edm-mac-amd64
+          - release/edm-windows-amd64.exe
+          - release/edm-windows-386.exe
         skip_cleanup: true
         on:
           repo: svenfinke/edm
