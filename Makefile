@@ -1,3 +1,4 @@
+MAKEFLAGS += j6
 exe = main.go
 cmd = edm
 TRAVIS_TAG ?= "0.0.0"
