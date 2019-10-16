@@ -21,9 +21,6 @@ before_install:
 
 jobs:
   include:
-    - name: Unit tests
-      script: make test
-
     - stage: test
       name: "Run tests"
       script: make test
@@ -41,6 +38,7 @@ jobs:
     - stage: deploy
       name: "Deployment"
       if: tag IS present
+      before_script: make deps
       script: make release
       deploy:
         provider: releases
