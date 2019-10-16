@@ -1,56 +1,51 @@
 language: go
-
 env:
   global:
-    - GO111MODULE=on
-    - CC_TEST_REPORTER_ID=84c4895fcde8b9ad85469b325f08337b5a7953a5b0508b0cf0fe7a38acf3271b
-
+  - GO111MODULE=on
+  - CC_TEST_REPORTER_ID=84c4895fcde8b9ad85469b325f08337b5a7953a5b0508b0cf0fe7a38acf3271b
 stages:
-  - test
-  - deploy
-
+- test
+- deploy
 go:
-  - 1.13.x
-
+- 1.13.x
 sudo: required
 dist: trusty
-
 before_install:
-  - go get -u golang.org/x/lint/golint
-  - make deps
-
+- go get -u golang.org/x/lint/golint
+- make deps
 jobs:
   include:
-    - stage: test
-      name: "Run tests"
-      script: make test
-
-    - stage: test
-      name: "Generate coverage"
-      before_script:
-        - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-        - chmod +x ./cc-test-reporter
-        - ./cc-test-reporter before-build
-      script: make test-coverage
-      after_script:
-        - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
-
-    - stage: deploy
-      name: "Deployment"
-      if: tag IS present
-      before_script: make deps
-      script: make release
-      deploy:
-        provider: releases
-        overwrite: true
-        file:
-          - release/edm-linux-amd64
-          - release/edm-linux-arm
-          - release/edm-linux-386
-          - release/edm-mac-amd64
-          - release/edm-windows-amd64.exe
-          - release/edm-windows-386.exe
-        skip_cleanup: true
-        on:
-          repo: svenfinke/edm
-          tags: true
+  - stage: test
+    name: Run tests
+    script: make test
+  - stage: test
+    name: Generate coverage
+    before_script:
+    - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
+      > ./cc-test-reporter
+    - chmod +x ./cc-test-reporter
+    - "./cc-test-reporter before-build"
+    script: make test-coverage
+    after_script:
+    - "./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT"
+  - stage: deploy
+    name: Deployment
+    if: tag IS present
+    before_script: make deps
+    script: make release
+    deploy:
+      provider: releases
+      api_key:
+        secure: bGCA7xPmJeFNq0F+UO6mrdBFQEFFbztR0SF3U/2vQLQKJEyODhY+Ehk5fAKMKn7ZncN7Xmq5VI7bm8dlyVRZTklL85jPBRVANtvvV4U/HYGrveHz59BOapiUNyznADQ+prJOak81K+uMj1TOdsdGRfBv+XR9Yzc+gf+DIPIF5LA9ZfdHE4YA6ctKfPM5c/QQt6w473AYVtgPP9SbMV4VwJ5zwtve0ciGv3ByYa2AwuI8N68k0pzZCzULze+Qw7RhYIWyy2pLvsde+b/0z1GqBTuKlBWtebKoTfFSSVerZXkeRRlkhmMCYFCfQkU9tONbPSKZHybkh9sGXsUGvRRSMaqBMhqAQdO2vv9K2IIuWObhUe9B3fGTN9emHacEyR+8X3/xTxvSTurZsSK8T7ZRUS/fLcgGc5xzqgtgKRr8ssCyxFoQukfh6+k6SUu5wccJfRY7N9/GQewDatsri45RF+9fMbrKoccQqJKveybRuwImHAseE5xXCsEDypE6u3mpjcBodiHmC+DNdyvKVxwE5cS5lAqEAY91ikNo52pbTXIsY6eM6AO9YdhwWHhtL1gtOMVAFOw7XKRVfAoR3ZWM7+Cc+SDhx3grSNSMM5p8zNk8xaOxnLI6wZJukUu5pgmeZq+bArE0FqgHXsPPd7aGemBf/jKKkSFE62YESrEhBNk=
+      overwrite: true
+      file:
+      - release/edm-linux-amd64
+      - release/edm-linux-arm
+      - release/edm-linux-386
+      - release/edm-mac-amd64
+      - release/edm-windows-amd64.exe
+      - release/edm-windows-386.exe
+      skip_cleanup: true
+      on:
+        repo: svenfinke/edm
+        tags: true
