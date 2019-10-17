@@ -31,7 +31,10 @@ jobs:
   - stage: deploy
     name: Deployment
     if: tag IS present
-    before_script: make deps
+    before_script:
+      - make deps
+      - sudo apt update
+      - sudo apt install upx
     script: make release
     deploy:
       provider: releases
