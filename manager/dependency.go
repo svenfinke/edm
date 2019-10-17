@@ -1,6 +1,9 @@
 package manager
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 // Dependency is defining a single dependency that must be fetched for the project
 type Dependency struct {
@@ -25,5 +28,10 @@ func init() {
 // Fetch is using the type of the dependency and using it to call the correct Fetch of the given type
 func (d *Dependency) Fetch() error {
 	fmt.Printf("INFO: Fetching %s as %s\n", d.Source, d.Type)
-	return DependencyTypes[d.Type].Fetch(d)
+
+	if depType, ok := DependencyTypes[d.Type]; ok {
+		return depType.Fetch(d)
+	}
+
+	return errors.New("dependencyType not found")
 }

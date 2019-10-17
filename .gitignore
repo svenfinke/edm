@@ -5,3 +5,4 @@ dist/*
 c.out
 test/*
 !test/test.zip
+!test/fake_binary

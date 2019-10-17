@@ -20,11 +20,7 @@ func (d binaryType) Fetch(dependency *Dependency) error {
 
 	fmt.Printf("INFO: File downloaded to %s\n", dependency.Target)
 
-	fileInfo, err := os.Stat(dependency.Target)
-
-	if err != nil {
-		return err
-	}
+	fileInfo, _ := os.Stat(dependency.Target)
 
 	// Change the Filemode
 	var newFileMode = fileInfo.Mode() | (1 << 0) | (1 << 3) | (1 << 6)
