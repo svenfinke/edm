@@ -3,6 +3,8 @@ exe = main.go
 cmd = edm
 TRAVIS_TAG ?= "0.0.0"
 
+.PHONY: all deps install test test-coverage release
+
 all: deps test run
 
 deps:
