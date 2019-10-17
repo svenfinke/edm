@@ -43,11 +43,8 @@ jobs:
       overwrite: true
       file:
       - dist/edm-linux-amd64
-      - dist/edm-linux-arm
-      - dist/edm-linux-386
       - dist/edm-mac-amd64
       - dist/edm-windows-amd64.exe
-      - dist/edm-windows-386.exe
       skip_cleanup: true
       on:
         repo: svenfinke/edm

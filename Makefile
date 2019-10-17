@@ -1,4 +1,4 @@
-MAKEFLAGS += j6
+MAKEFLAGS += j3
 exe = main.go
 cmd = edm
 TRAVIS_TAG ?= "0.0.0"
@@ -64,4 +64,4 @@ release-windows-386:
 	@upx --brute dist/$(cmd)-windows-386.exe
 	@echo INFO: Finished Building $@
     	
-release: release-amd64 release-arm release-386 release-mac-amd64 release-windows-386 release-windows-amd64
+release: release-amd64 release-mac-amd64 release-windows-amd64
