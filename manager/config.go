@@ -20,7 +20,7 @@ func OpenConfig(filename string) (Config, error) {
 
 	err = yaml.Unmarshal(data, &cfg)
 	if err != nil {
-			return cfg, err
+		return cfg, err
 	}
 
 	return cfg, nil
