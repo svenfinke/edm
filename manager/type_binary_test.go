@@ -37,8 +37,8 @@ func Test_binaryType_Fetch(t *testing.T) {
 
 		// Using binary AND to only get the executable flags from the fileMode. All 3 of them should be set. Compare
 		// this to os.ModePerm where these flags are definitely set.
-		if fileInfo.Mode()&((1 << 0) | (1 << 3) | (1 << 6)) != os.ModePerm&((1 << 0) | (1 << 3) | (1 << 6)) {
-			t.Errorf("Mode given: %v", fileInfo.Mode()&((1 << 0) | (1 << 3) | (1 << 6)))
+		if fileInfo.Mode()&((1<<0)|(1<<3)|(1<<6)) != os.ModePerm&((1<<0)|(1<<3)|(1<<6)) {
+			t.Errorf("Mode given: %v", fileInfo.Mode()&((1<<0)|(1<<3)|(1<<6)))
 		}
 	})
 }

@@ -5,6 +5,7 @@ import "testing"
 var calledFetch = false
 
 type testType struct{}
+
 func (tt testType) Fetch(dependency *Dependency) error {
 	calledFetch = true
 	return nil
