@@ -13,12 +13,14 @@ type Config struct {
 // OpenConfig is opening und unmarshalling the provided config file
 func OpenConfig(filename string) (Config, error) {
 	var cfg = Config{}
-	if data, err := ioutil.ReadFile(filename); err != nil {
+	data, err := ioutil.ReadFile(filename)
+	if err != nil {
 		return cfg, err
-	} else {
-		if err := yaml.Unmarshal(data, &cfg); err != nil {
+	}
+
+	err = yaml.Unmarshal(data, &cfg)
+	if err != nil {
 			return cfg, err
-		}
 	}
 
 	return cfg, nil
